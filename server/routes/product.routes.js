@@ -2,7 +2,7 @@
 const ProductController = require("../controllers/product.controller");
 
 //create product function
-//function takes in app server as argument and sets up all hte routes
+//function takes in app server as argument and sets up all the routes
 module.exports = (app) => {
   //get all
   app.get("/api/products", ProductController.getAll);

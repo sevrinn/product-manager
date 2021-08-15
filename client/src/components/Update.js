@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, navigate } from "react";
+import { Link, navigate } from "@reach/router";
 
 const Update = (props) => {
   return (

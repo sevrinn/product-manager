@@ -20,4 +20,4 @@ const ProductSchema = mongoose.Schema(
 );
 
 //export model. Collection name and schema are required
-module.exports = mongoose.model("Product", RestaurantSchema);
+module.exports = mongoose.model("Product", ProductSchema);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, navigate } from "@reach/router";
+import ProductForm from "./ProductForm";
 
 const All = (props) => {
   const [allProducts, setAllProducts] = useState([]);
@@ -20,7 +21,8 @@ const All = (props) => {
   }, []);
   return (
     <div>
-      <h2>All Products</h2>
+      <ProductForm />
+
       {allProducts.map((product, index) => {
         console.log(product.title);
 

@@ -1,3 +1,43 @@
+.header-links a {
+  padding: 20px;
+}
+
+form {
+  padding: 30px;
+  background: papayawhip;
+}
+
+form div {
+  width: 300px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+label {
+  width: 300px;
+}
+
+form input[type="text"] {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+.container {
+  background-color: papayawhip;
+}
+table,
+tbody,
+tr,
+td {
+  border: 1px solid black;
+  text-align: start;
+  vertical-align: top;
+}
+table {
+  width: 300px;
+  margin: 0 auto;
+}
 .App {
   text-align: center;
 }

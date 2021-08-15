@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Router } from "@reach/router";
+import "./App.css";
+import All from "./components/All";
+import Create from "./components/Create";
+import Details from "./components/Details";
+import Update from "./components/Update";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Product Manager</h1>
+      <Router>
+        <All default path="/products" />
+        <Create path="/products/new" />
+        <Details path="/products/:id" />
+        <Update path="/products/:id/edit" />
+      </Router>
     </div>
   );
 }

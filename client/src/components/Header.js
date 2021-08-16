@@ -6,7 +6,6 @@ const Header = (props) => {
     <div className="header">
       <h1>ProductMananger+</h1>
       <div className="header-links">
-        <Link to="/products/new">Create Product</Link>
         <Link to="/products/">Home</Link>
       </div>
     </div>

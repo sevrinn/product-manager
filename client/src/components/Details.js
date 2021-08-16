@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, navigate } from "@reach/router";
+import Delete from "./Delete";
 
 const Details = (props) => {
   //pull id from props
@@ -20,7 +21,11 @@ const Details = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
+
+  const redirectAfterDelete = () => {
+    navigate("/restaurants");
+  };
 
   return (
     <div className="container">
@@ -41,6 +46,13 @@ const Details = (props) => {
           </tr>
         </tbody>
       </table>
+      <button
+        className="editBtn"
+        onClick={(e) => navigate(`/products/${id}/edit`)}
+      >
+        Edit Product
+      </button>
+      <Delete productId={id} afterDelete={redirectAfterDelete} />
     </div>
   );
 };

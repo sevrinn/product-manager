@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, navigate } from "@reach/router";
 import ProductForm from "./ProductForm";
+import Delete from "./Delete";
 
 const All = (props) => {
   const [allProducts, setAllProducts] = useState([]);
@@ -19,6 +20,13 @@ const All = (props) => {
         console.log(err);
       });
   }, []);
+
+  const updatedAfterDelete = (deletedProductId) => {
+    let filteredProductArray = allProducts.filter((productObj) => {
+      return productObj._id !== deletedProductId;
+    });
+    setAllProducts(filteredProductArray);
+  };
   return (
     <div>
       <ProductForm />
@@ -29,6 +37,7 @@ const All = (props) => {
         return (
           <div key={index}>
             <Link to={"/products/" + product._id}>{product.title}</Link>
+            <Delete productId={product._id} afterDelete={updatedAfterDelete} />
           </div>
         );
       })}

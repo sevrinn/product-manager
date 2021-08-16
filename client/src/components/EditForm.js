@@ -1,36 +1,56 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
+import Delete from "./Delete";
 
-const ProductForm = () => {
+const EditForm = (props) => {
+  const { id } = props;
+  console.log(id);
   //keep track of what's being typed by setting state
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState("");
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/products" + id)
+      .then((res) => {
+        console.log(res.data);
+        //navigates to details page for this product
+        setTitle(res.data.title);
+        setPrice(res.data.price);
+        setDescription(res.data.description);
+      })
+      .catch((err) => {
+        console.log("There was a problem setting state of your edit form", err);
+      });
+  }, []);
+
+  const redirectAfterDelete = () => {
+    navigate("/restaurants");
+  };
+
   const handleSubmit = (e) => {
     //prevent default submit
     e.preventDefault();
 
     //create newProduct obj
-    const newProduct = {
+    const tempProduct = {
       title,
       price,
       description,
     };
 
     //make axios post request
-
     axios
-      .post("http://localhost:8000/api/products", newProduct)
+      .put("http://localhost:8000/api/products" + id, tempProduct)
       .then((res) => {
         console.log(res);
-        //navigates to details page for this product
         navigate("/products/" + res.data._id);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
         if (err.response.data.errors) {
           setErrors(err.response.data.errors);
         }
@@ -38,11 +58,10 @@ const ProductForm = () => {
   };
   return (
     <div className="container">
-      <h2>Add A Product</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Edit Product</h2>
+      <form>
         <div>
           <label>Title: </label>
-
           <input
             type="text"
             name="title"
@@ -55,7 +74,6 @@ const ProductForm = () => {
         </div>
         <div>
           <label>Price: </label>
-
           <input
             type="text"
             name="price"
@@ -68,7 +86,6 @@ const ProductForm = () => {
         </div>
         <div>
           <label>Description: </label>
-
           <input
             type="text"
             name="description"
@@ -77,11 +94,12 @@ const ProductForm = () => {
           />
         </div>
         <div>
-          <button type="submit">Add Product</button>
+          <button onClick={handleSubmit}>Add Product</button>
+          <Delete productId={id} afterDelete={redirectAfterDelete} />
         </div>
       </form>
     </div>
   );
 };
 
-export default ProductForm;
+export default EditForm;

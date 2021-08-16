@@ -5,12 +5,12 @@ const ProductSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      require: [true, "Product name is required"],
+      required: [true, "Product name is required"],
       minLength: [3, "Product title must be at least 3 characters."],
     },
     price: {
       type: String,
-      require: [true, "Product price is required"],
+      required: [true, "Product price is required"],
     },
     description: {
       type: String,

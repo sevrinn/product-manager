@@ -94,7 +94,7 @@ const EditForm = (props) => {
           />
         </div>
         <div>
-          <button onClick={handleSubmit}>Add Product</button>
+          <button onClick={handleSubmit}>Update Product</button>
           <Delete productId={id} afterDelete={redirectAfterDelete} />
         </div>
       </form>
